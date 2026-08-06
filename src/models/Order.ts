@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Types } from 'mongoose';
-import type { OrderStatus } from '../types/index.js';
+import type { OrderStatus } from '../types/index.ts';
 
 export interface IOrder extends Document {
   seekerId: Types.ObjectId;

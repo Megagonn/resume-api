@@ -2,10 +2,10 @@ import { Router } from 'express';
 import {
   listSeekerApplications,
   updateApplicationStatus,
-} from '../controllers/applicationController.js';
-import { authenticate, authorize } from '../middleware/auth.js';
-import { validateBody } from '../middleware/validate.js';
-import { applicationStatusSchema } from '../utils/schemas.js';
+} from '../controllers/applicationController.ts';
+import { authenticate, authorize } from '../middleware/auth.ts';
+import { validateBody } from '../middleware/validate.ts';
+import { applicationStatusSchema } from '../utils/schemas.ts';
 
 export const seekerApplicationRouter = Router();
 seekerApplicationRouter.use(authenticate, authorize('seeker'));

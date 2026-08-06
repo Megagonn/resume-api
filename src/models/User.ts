@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import type { UserRole } from '../types/index.js';
+import type { UserRole } from '../types/index.ts';
 
 export interface SeekerProfile {
   headline?: string;

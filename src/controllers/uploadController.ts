@@ -1,9 +1,9 @@
 import { Response, NextFunction } from 'express';
-import { AuthRequest } from '../middleware/auth.js';
-import { uploadBuffer } from '../services/cloudinary.js';
-import { User } from '../models/User.js';
-import { Company } from '../models/Company.js';
-import { publicUser } from '../utils/auth.js';
+import { AuthRequest } from '../middleware/auth.ts';
+import { uploadBuffer } from '../services/cloudinary.ts';
+import { User } from '../models/User.ts';
+import { Company } from '../models/Company.ts';
+import { publicUser } from '../utils/auth.ts';
 
 const FOLDER_ROOT = 'ready-brand';
 

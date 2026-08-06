@@ -1,4 +1,4 @@
-import { cloudinary, assertCloudinaryConfigured } from '../config/cloudinary.js';
+import { cloudinary, assertCloudinaryConfigured } from '../config/cloudinary.ts';
 
 export type UploadKind = 'image' | 'raw';
 

@@ -1,29 +1,29 @@
 import express from 'express';
 import cors from 'cors';
-import { env } from './config/env.js';
-import { connectDb } from './config/db.js';
-import { seed } from './seed/index.js';
-import { errorHandler } from './middleware/errorHandler.js';
+import { env } from './config/env.ts';
+import { connectDb } from './config/db.ts';
+import { seed } from './seed/index.ts';
+import { errorHandler } from './middleware/errorHandler.ts';
 
-import authRoutes from './routes/auth.js';
-import jobRoutes, { hirerJobRouter } from './routes/jobs.js';
+import authRoutes from './routes/auth.ts';
+import jobRoutes, { hirerJobRouter } from './routes/jobs.ts';
 import {
   seekerApplicationRouter,
   hirerApplicationRouter,
-} from './routes/applications.js';
+} from './routes/applications.ts';
 import {
   packageRouter,
   orderRouter,
   seekerOrderRouter,
-} from './routes/orders.js';
-import { seekerProfileRouter, hirerCompanyRouter, hirerAccountRouter } from './routes/profiles.js';
-import adminRoutes from './routes/admin.js';
-import uploadRoutes from './routes/uploads.js';
+} from './routes/orders.ts';
+import { seekerProfileRouter, hirerCompanyRouter, hirerAccountRouter } from './routes/profiles.ts';
+import adminRoutes from './routes/admin.ts';
+import uploadRoutes from './routes/uploads.ts';
 import {
   hirerPlanPublicRouter,
   hirerSubscriptionRouter,
-} from './routes/subscriptions.js';
-import publicBlogRouter from './routes/blog.js';
+} from './routes/subscriptions.ts';
+import publicBlogRouter from './routes/blog.ts';
 
 async function main() {
   await connectDb();

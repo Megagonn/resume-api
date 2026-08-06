@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import type { HirerPlanSlug } from '../types/index.js';
+import type { HirerPlanSlug } from '../types/index.ts';
 
 export interface IHirerPlan extends Document {
   slug: HirerPlanSlug;

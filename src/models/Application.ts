@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Types } from 'mongoose';
-import type { ApplicationStatus } from '../types/index.js';
+import type { ApplicationStatus } from '../types/index.ts';
 
 export interface IApplication extends Document {
   jobId: Types.ObjectId;

@@ -1,5 +1,5 @@
-import { connectDb } from '../config/db.js';
-import { seed } from './index.js';
+import { connectDb } from '../config/db.ts';
+import { seed } from './index.ts';
 
 async function run() {
   await connectDb();

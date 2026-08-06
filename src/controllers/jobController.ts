@@ -1,14 +1,14 @@
 import { Response, NextFunction } from 'express';
-import { Job } from '../models/Job.js';
-import { Company } from '../models/Company.js';
-import { Application } from '../models/Application.js';
-import { AuthRequest } from '../middleware/auth.js';
+import { Job } from '../models/Job.ts';
+import { Company } from '../models/Company.ts';
+import { Application } from '../models/Application.ts';
+import { AuthRequest } from '../middleware/auth.ts';
 import {
   assertCanFeature,
   assertCanOpenJob,
   resolveEntitlements,
   redactApplicationsForPlan,
-} from '../services/entitlements.js';
+} from '../services/entitlements.ts';
 
 export async function listJobs(req: AuthRequest, res: Response, next: NextFunction) {
   try {

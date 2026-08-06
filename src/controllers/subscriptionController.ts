@@ -1,10 +1,10 @@
 import { Response, NextFunction } from 'express';
-import { Company } from '../models/Company.js';
-import { HirerPlan } from '../models/HirerPlan.js';
-import { Job } from '../models/Job.js';
-import { AuthRequest } from '../middleware/auth.js';
-import { countOpenJobs, resolveEntitlements } from '../services/entitlements.js';
-import type { HirerPlanSlug } from '../types/index.js';
+import { Company } from '../models/Company.ts';
+import { HirerPlan } from '../models/HirerPlan.ts';
+import { Job } from '../models/Job.ts';
+import { AuthRequest } from '../middleware/auth.ts';
+import { countOpenJobs, resolveEntitlements } from '../services/entitlements.ts';
+import type { HirerPlanSlug } from '../types/index.ts';
 
 export async function listHirerPlans(_req: AuthRequest, res: Response, next: NextFunction) {
   try {

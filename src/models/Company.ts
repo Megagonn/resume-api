@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Types } from 'mongoose';
-import type { CompanySubscription } from '../types/index.js';
+import type { CompanySubscription } from '../types/index.ts';
 
 export interface ICompany extends Document {
   hirerId: Types.ObjectId;

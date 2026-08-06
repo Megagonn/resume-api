@@ -1,7 +1,7 @@
-import type { PlanEntitlements, HirerPlanSlug, CompanySubscription } from '../types/index.js';
-import type { ICompany } from '../models/Company.js';
-import { Job } from '../models/Job.js';
-import { HirerPlan } from '../models/HirerPlan.js';
+import type { PlanEntitlements, HirerPlanSlug, CompanySubscription } from '../types/index.ts';
+import type { ICompany } from '../models/Company.ts';
+import { Job } from '../models/Job.ts';
+import { HirerPlan } from '../models/HirerPlan.ts';
 
 export const DEFAULT_PLAN_ENTITLEMENTS: Record<HirerPlanSlug, PlanEntitlements> = {
   free: {

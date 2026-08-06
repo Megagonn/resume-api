@@ -5,9 +5,9 @@ import {
   uploadAvatar,
   uploadResume,
   uploadCompanyLogo,
-} from '../controllers/uploadController.js';
-import { authenticate, authorize } from '../middleware/auth.js';
-import { uploadImage, uploadDocument } from '../middleware/upload.js';
+} from '../controllers/uploadController.ts';
+import { authenticate, authorize } from '../middleware/auth.ts';
+import { uploadImage, uploadDocument } from '../middleware/upload.ts';
 
 const uploadRouter = Router();
 uploadRouter.use(authenticate);

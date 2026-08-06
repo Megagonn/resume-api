@@ -1,8 +1,8 @@
 import { Response, NextFunction } from 'express';
-import { Application } from '../models/Application.js';
-import { Job } from '../models/Job.js';
-import { AuthRequest } from '../middleware/auth.js';
-import { uploadBuffer } from '../services/cloudinary.js';
+import { Application } from '../models/Application.ts';
+import { Job } from '../models/Job.ts';
+import { AuthRequest } from '../middleware/auth.ts';
+import { uploadBuffer } from '../services/cloudinary.ts';
 
 export async function applyToJob(req: AuthRequest, res: Response, next: NextFunction) {
   try {

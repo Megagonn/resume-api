@@ -1,10 +1,10 @@
 import bcrypt from 'bcryptjs';
-import { User } from '../models/User.js';
-import { Package } from '../models/Package.js';
-import { HirerPlan } from '../models/HirerPlan.js';
-import { Company } from '../models/Company.js';
-import { BlogPost } from '../models/BlogPost.js';
-import { env } from '../config/env.js';
+import { User } from '../models/User.ts';
+import { Package } from '../models/Package.ts';
+import { HirerPlan } from '../models/HirerPlan.ts';
+import { Company } from '../models/Company.ts';
+import { BlogPost } from '../models/BlogPost.ts';
+import { env } from '../config/env.ts';
 
 const defaultPackages = [
   {

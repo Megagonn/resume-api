@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { PlanLimitError } from '../services/entitlements.js';
+import { PlanLimitError } from '../services/entitlements.ts';
 
 export function errorHandler(
   err: unknown,

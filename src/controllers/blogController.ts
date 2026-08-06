@@ -1,6 +1,6 @@
 import { Response, NextFunction } from 'express';
-import { BlogPost } from '../models/BlogPost.js';
-import { AuthRequest } from '../middleware/auth.js';
+import { BlogPost } from '../models/BlogPost.ts';
+import { AuthRequest } from '../middleware/auth.ts';
 
 function slugify(title: string) {
   return title

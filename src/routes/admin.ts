@@ -10,23 +10,23 @@ import {
   createPackage,
   updatePackage,
   deletePackage,
-} from '../controllers/adminController.js';
+} from '../controllers/adminController.ts';
 import {
   listAdminHirerPlans,
   updateAdminHirerPlan,
   listAdminCompanies,
   updateCompanySubscription,
-} from '../controllers/subscriptionController.js';
-import { authenticate, authorize } from '../middleware/auth.js';
-import { validateBody } from '../middleware/validate.js';
+} from '../controllers/subscriptionController.ts';
+import { authenticate, authorize } from '../middleware/auth.ts';
+import { validateBody } from '../middleware/validate.ts';
 import {
   adminUserPatchSchema,
   packageSchema,
   hirerPlanPatchSchema,
   companySubscriptionSchema,
-} from '../utils/schemas.js';
-import { adminOrderRouter } from './orders.js';
-import { adminBlogRouter } from './blog.js';
+} from '../utils/schemas.ts';
+import { adminOrderRouter } from './orders.ts';
+import { adminBlogRouter } from './blog.ts';
 
 const router = Router();
 

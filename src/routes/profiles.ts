@@ -6,14 +6,14 @@ import {
   updateCompany,
   getHirerAccount,
   updateHirerAccount,
-} from '../controllers/profileController.js';
-import { authenticate, authorize } from '../middleware/auth.js';
-import { validateBody } from '../middleware/validate.js';
+} from '../controllers/profileController.ts';
+import { authenticate, authorize } from '../middleware/auth.ts';
+import { validateBody } from '../middleware/validate.ts';
 import {
   seekerProfileSchema,
   companySchema,
   hirerAccountSchema,
-} from '../utils/schemas.js';
+} from '../utils/schemas.ts';
 
 export const seekerProfileRouter = Router();
 seekerProfileRouter.use(authenticate, authorize('seeker'));

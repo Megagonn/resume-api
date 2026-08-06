@@ -3,8 +3,8 @@ import {
   listHirerPlans,
   getSubscription,
   upgradeSubscription,
-} from '../controllers/subscriptionController.js';
-import { authenticate, authorize } from '../middleware/auth.js';
+} from '../controllers/subscriptionController.ts';
+import { authenticate, authorize } from '../middleware/auth.ts';
 
 export const hirerPlanPublicRouter = Router();
 hirerPlanPublicRouter.get('/', listHirerPlans);

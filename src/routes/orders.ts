@@ -5,11 +5,11 @@ import {
   listSeekerOrders,
   updateOrderStatus,
   deliverOrder,
-} from '../controllers/orderController.js';
-import { authenticate, authorize } from '../middleware/auth.js';
-import { validateBody } from '../middleware/validate.js';
-import { orderSchema, orderStatusSchema } from '../utils/schemas.js';
-import { uploadDocument } from '../middleware/upload.js';
+} from '../controllers/orderController.ts';
+import { authenticate, authorize } from '../middleware/auth.ts';
+import { validateBody } from '../middleware/validate.ts';
+import { orderSchema, orderStatusSchema } from '../utils/schemas.ts';
+import { uploadDocument } from '../middleware/upload.ts';
 
 export const packageRouter = Router();
 packageRouter.get('/', listPackages);

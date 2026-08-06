@@ -7,12 +7,12 @@ import {
   deleteJob,
   listHirerJobs,
   listJobApplications,
-} from '../controllers/jobController.js';
-import { applyToJob } from '../controllers/applicationController.js';
-import { authenticate, authorize } from '../middleware/auth.js';
-import { validateBody } from '../middleware/validate.js';
-import { jobSchema, applicationSchema } from '../utils/schemas.js';
-import { uploadDocument } from '../middleware/upload.js';
+} from '../controllers/jobController.ts';
+import { applyToJob } from '../controllers/applicationController.ts';
+import { authenticate, authorize } from '../middleware/auth.ts';
+import { validateBody } from '../middleware/validate.ts';
+import { jobSchema, applicationSchema } from '../utils/schemas.ts';
+import { uploadDocument } from '../middleware/upload.ts';
 
 const router = Router();
 

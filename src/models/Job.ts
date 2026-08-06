@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Types } from 'mongoose';
-import type { JobType, JobStatus } from '../types/index.js';
+import type { JobType, JobStatus } from '../types/index.ts';
 
 export interface IJob extends Document {
   companyId: Types.ObjectId;

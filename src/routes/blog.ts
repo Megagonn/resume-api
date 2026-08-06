@@ -6,9 +6,9 @@ import {
   createPost,
   updatePost,
   deletePost,
-} from '../controllers/blogController.js';
-import { validateBody } from '../middleware/validate.js';
-import { blogPostSchema } from '../utils/schemas.js';
+} from '../controllers/blogController.ts';
+import { validateBody } from '../middleware/validate.ts';
+import { blogPostSchema } from '../utils/schemas.ts';
 
 const publicBlogRouter = Router();
 publicBlogRouter.get('/', listPublishedPosts);
