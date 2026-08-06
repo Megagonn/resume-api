@@ -46,12 +46,16 @@ export const orderSchema = z.object({
   packageId: z.string().min(1),
   notes: z.string().optional(),
   markPaid: z.boolean().optional(),
+  attachmentFileUrl: z.string().optional(),
+  attachmentFileName: z.string().optional(),
 });
 
 export const orderStatusSchema = z.object({
   status: z.enum(['pending', 'paid', 'in_progress', 'delivered', 'cancelled']),
   deliverables: z.string().optional(),
   notes: z.string().optional(),
+  deliveryFileUrl: z.string().optional(),
+  deliveryFileName: z.string().optional(),
 });
 
 export const seekerProfileSchema = z.object({

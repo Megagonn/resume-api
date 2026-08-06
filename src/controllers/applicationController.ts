@@ -2,6 +2,7 @@ import { Response, NextFunction } from 'express';
 import { Application } from '../models/Application.js';
 import { Job } from '../models/Job.js';
 import { AuthRequest } from '../middleware/auth.js';
+import { uploadBuffer } from '../services/cloudinary.js';
 
 export async function applyToJob(req: AuthRequest, res: Response, next: NextFunction) {
   try {
@@ -20,11 +21,21 @@ export async function applyToJob(req: AuthRequest, res: Response, next: NextFunc
       return;
     }
 
+    let resumeUrl = req.body.resumeUrl as string | undefined;
+    if (req.file) {
+      const uploaded = await uploadBuffer(req.file.buffer, {
+        folder: 'ready-brand/applications',
+        resourceType: 'raw',
+        filename: req.file.originalname,
+      });
+      resumeUrl = uploaded.url;
+    }
+
     const application = await Application.create({
       jobId: job._id,
       seekerId: req.user!.id,
       coverNote: req.body.coverNote,
-      resumeUrl: req.body.resumeUrl,
+      resumeUrl,
       status: 'new',
       timeline: [{ status: 'new', at: new Date() }],
     });

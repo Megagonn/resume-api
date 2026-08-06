@@ -4,10 +4,12 @@ import {
   createOrder,
   listSeekerOrders,
   updateOrderStatus,
+  deliverOrder,
 } from '../controllers/orderController.js';
 import { authenticate, authorize } from '../middleware/auth.js';
 import { validateBody } from '../middleware/validate.js';
 import { orderSchema, orderStatusSchema } from '../utils/schemas.js';
+import { uploadDocument } from '../middleware/upload.js';
 
 export const packageRouter = Router();
 packageRouter.get('/', listPackages);
@@ -28,3 +30,4 @@ seekerOrderRouter.get('/', listSeekerOrders);
 /** Mounted under /api/admin/orders — parent already authenticates admin */
 export const adminOrderRouter = Router();
 adminOrderRouter.patch('/:id', validateBody(orderStatusSchema), updateOrderStatus);
+adminOrderRouter.post('/:id/deliver', uploadDocument, deliverOrder);

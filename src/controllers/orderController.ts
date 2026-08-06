@@ -2,6 +2,7 @@ import { Response, NextFunction } from 'express';
 import { Package } from '../models/Package.js';
 import { Order } from '../models/Order.js';
 import { AuthRequest } from '../middleware/auth.js';
+import { uploadBuffer } from '../services/cloudinary.js';
 
 export async function listPackages(req: AuthRequest, res: Response, next: NextFunction) {
   try {
@@ -30,6 +31,8 @@ export async function createOrder(req: AuthRequest, res: Response, next: NextFun
       status: req.body.markPaid ? 'paid' : 'pending',
       paymentRef: req.body.markPaid ? `mock_${Date.now()}` : undefined,
       notes: req.body.notes,
+      attachmentFileUrl: req.body.attachmentFileUrl,
+      attachmentFileName: req.body.attachmentFileName,
     });
 
     const populated = await order.populate('packageId');
@@ -61,10 +64,58 @@ export async function updateOrderStatus(req: AuthRequest, res: Response, next: N
     order.status = req.body.status;
     if (req.body.deliverables !== undefined) order.deliverables = req.body.deliverables;
     if (req.body.notes !== undefined) order.notes = req.body.notes;
+    if (req.body.deliveryFileUrl !== undefined) order.deliveryFileUrl = req.body.deliveryFileUrl;
+    if (req.body.deliveryFileName !== undefined) {
+      order.deliveryFileName = req.body.deliveryFileName;
+    }
+    if (req.body.status === 'delivered') {
+      order.deliveredAt = order.deliveredAt || new Date();
+    }
     await order.save();
 
     const populated = await order.populate(['packageId', 'seekerId']);
     res.json({ order: populated });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function deliverOrder(req: AuthRequest, res: Response, next: NextFunction) {
+  try {
+    const order = await Order.findById(req.params.id);
+    if (!order) {
+      res.status(404).json({ message: 'Order not found' });
+      return;
+    }
+
+    const file = req.file;
+    if (!file && !req.body.deliveryFileUrl) {
+      res.status(400).json({ message: 'Upload a CV file to deliver this order' });
+      return;
+    }
+
+    if (file) {
+      const uploaded = await uploadBuffer(file.buffer, {
+        folder: 'ready-brand/deliveries',
+        resourceType: 'raw',
+        filename: file.originalname,
+      });
+      order.deliveryFileUrl = uploaded.url;
+      order.deliveryFileName = file.originalname;
+    } else if (req.body.deliveryFileUrl) {
+      order.deliveryFileUrl = req.body.deliveryFileUrl;
+      order.deliveryFileName = req.body.deliveryFileName || 'delivered-cv.pdf';
+    }
+
+    if (req.body.deliverables !== undefined) order.deliverables = req.body.deliverables;
+    if (req.body.notes !== undefined) order.notes = req.body.notes;
+
+    order.status = 'delivered';
+    order.deliveredAt = new Date();
+    await order.save();
+
+    const populated = await order.populate(['packageId', 'seekerId']);
+    res.json({ order: populated, message: 'Order delivered' });
   } catch (err) {
     next(err);
   }

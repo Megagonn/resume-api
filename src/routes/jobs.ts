@@ -12,6 +12,7 @@ import { applyToJob } from '../controllers/applicationController.js';
 import { authenticate, authorize } from '../middleware/auth.js';
 import { validateBody } from '../middleware/validate.js';
 import { jobSchema, applicationSchema } from '../utils/schemas.js';
+import { uploadDocument } from '../middleware/upload.js';
 
 const router = Router();
 
@@ -21,6 +22,7 @@ router.post(
   '/:id/applications',
   authenticate,
   authorize('seeker'),
+  uploadDocument,
   validateBody(applicationSchema),
   applyToJob
 );
