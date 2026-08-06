@@ -39,6 +39,39 @@ export async function updateSeekerProfile(req: AuthRequest, res: Response, next:
   }
 }
 
+export async function getHirerAccount(req: AuthRequest, res: Response, next: NextFunction) {
+  try {
+    const user = await User.findById(req.user!.id);
+    if (!user) {
+      res.status(404).json({ message: 'User not found' });
+      return;
+    }
+    const company = await Company.findOne({ hirerId: req.user!.id });
+    res.json({ user: publicUser(user), company });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function updateHirerAccount(req: AuthRequest, res: Response, next: NextFunction) {
+  try {
+    const user = await User.findById(req.user!.id);
+    if (!user) {
+      res.status(404).json({ message: 'User not found' });
+      return;
+    }
+
+    if (req.body.name) user.name = req.body.name;
+    if (req.body.phone !== undefined) user.phone = req.body.phone;
+    if (req.body.avatarUrl !== undefined) user.avatarUrl = req.body.avatarUrl;
+    await user.save();
+
+    res.json({ user: publicUser(user) });
+  } catch (err) {
+    next(err);
+  }
+}
+
 export async function getCompany(req: AuthRequest, res: Response, next: NextFunction) {
   try {
     const company = await Company.findOne({ hirerId: req.user!.id });

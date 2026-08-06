@@ -26,6 +26,7 @@ import {
   companySubscriptionSchema,
 } from '../utils/schemas.js';
 import { adminOrderRouter } from './orders.js';
+import { adminBlogRouter } from './blog.js';
 
 const router = Router();
 
@@ -38,6 +39,7 @@ router.get('/jobs', listAllJobs);
 router.get('/applications', listAllApplications);
 router.get('/orders', listAllOrders);
 router.use('/orders', adminOrderRouter);
+router.use('/blog', adminBlogRouter);
 
 router.get('/packages', listAdminPackages);
 router.post('/packages', validateBody(packageSchema), createPackage);

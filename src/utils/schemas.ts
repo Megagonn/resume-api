@@ -119,3 +119,18 @@ export const companySubscriptionSchema = z.object({
   notes: z.string().optional(),
   renewsAt: z.string().optional(),
 });
+
+export const hirerAccountSchema = z.object({
+  name: z.string().min(2).optional(),
+  phone: z.string().optional(),
+  avatarUrl: z.string().optional(),
+});
+
+export const blogPostSchema = z.object({
+  title: z.string().min(3),
+  slug: z.string().min(2).optional(),
+  excerpt: z.string().min(10),
+  content: z.string().min(20),
+  coverImage: z.string().optional(),
+  published: z.boolean().optional(),
+});

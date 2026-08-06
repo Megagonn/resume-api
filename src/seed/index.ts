@@ -3,6 +3,7 @@ import { User } from '../models/User.js';
 import { Package } from '../models/Package.js';
 import { HirerPlan } from '../models/HirerPlan.js';
 import { Company } from '../models/Company.js';
+import { BlogPost } from '../models/BlogPost.js';
 import { env } from '../config/env.js';
 
 const defaultPackages = [
@@ -165,4 +166,39 @@ export async function seed(): Promise<void> {
       },
     }
   );
+
+  const adminUser =
+    (await User.findOne({ email: env.adminEmail.toLowerCase() })) ||
+    (await User.findOne({ role: 'admin' }));
+
+  if (adminUser) {
+    const blogCount = await BlogPost.countDocuments();
+    if (blogCount === 0) {
+      await BlogPost.create([
+        {
+          title: 'How to write a CV that gets past ATS',
+          slug: 'cv-that-gets-past-ats',
+          excerpt:
+            'Simple formatting and keyword habits that help your resume survive screening software.',
+          content:
+            'Applicant tracking systems reward clarity.\n\nUse standard section headings, mirror language from the job description, and keep layouts simple. Avoid tables and text boxes when possible.\n\nLead with outcomes — numbers, scope, and tools — instead of task lists. Then tailor the top third of your CV for each role you care about.',
+          authorId: adminUser._id,
+          published: true,
+          publishedAt: new Date(),
+        },
+        {
+          title: 'Hiring on The Ready Brand: Free vs Premium',
+          slug: 'hiring-free-vs-premium',
+          excerpt:
+            'When one open role is enough — and when unlimited listings and full applicant access pay off.',
+          content:
+            'Free is ideal for a single opening and a first look at applicants.\n\nPremium unlocks unlimited open jobs, featured placement on the board, and the full applicant pipeline including resumes and phone numbers.\n\nCustom plans are for high-volume teams that need negotiated limits — talk to us and we will set it up.',
+          authorId: adminUser._id,
+          published: true,
+          publishedAt: new Date(),
+        },
+      ]);
+      console.log('Blog posts seeded');
+    }
+  }
 }

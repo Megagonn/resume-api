@@ -16,13 +16,14 @@ import {
   orderRouter,
   seekerOrderRouter,
 } from './routes/orders.js';
-import { seekerProfileRouter, hirerCompanyRouter } from './routes/profiles.js';
+import { seekerProfileRouter, hirerCompanyRouter, hirerAccountRouter } from './routes/profiles.js';
 import adminRoutes from './routes/admin.js';
 import uploadRoutes from './routes/uploads.js';
 import {
   hirerPlanPublicRouter,
   hirerSubscriptionRouter,
 } from './routes/subscriptions.js';
+import publicBlogRouter from './routes/blog.js';
 
 async function main() {
   await connectDb();
@@ -41,6 +42,7 @@ async function main() {
   app.use('/api/hirer/jobs', hirerJobRouter);
   app.use('/api/hirer/applications', hirerApplicationRouter);
   app.use('/api/hirer/company', hirerCompanyRouter);
+  app.use('/api/hirer/profile', hirerAccountRouter);
   app.use('/api/hirer/subscription', hirerSubscriptionRouter);
   app.use('/api/hirer-plans', hirerPlanPublicRouter);
   app.use('/api/seeker/applications', seekerApplicationRouter);
@@ -48,6 +50,7 @@ async function main() {
   app.use('/api/seeker/profile', seekerProfileRouter);
   app.use('/api/packages', packageRouter);
   app.use('/api/orders', orderRouter);
+  app.use('/api/blog', publicBlogRouter);
   app.use('/api/uploads', uploadRoutes);
   app.use('/api/admin', adminRoutes);
 

@@ -4,10 +4,16 @@ import {
   updateSeekerProfile,
   getCompany,
   updateCompany,
+  getHirerAccount,
+  updateHirerAccount,
 } from '../controllers/profileController.js';
 import { authenticate, authorize } from '../middleware/auth.js';
 import { validateBody } from '../middleware/validate.js';
-import { seekerProfileSchema, companySchema } from '../utils/schemas.js';
+import {
+  seekerProfileSchema,
+  companySchema,
+  hirerAccountSchema,
+} from '../utils/schemas.js';
 
 export const seekerProfileRouter = Router();
 seekerProfileRouter.use(authenticate, authorize('seeker'));
@@ -18,3 +24,8 @@ export const hirerCompanyRouter = Router();
 hirerCompanyRouter.use(authenticate, authorize('hirer'));
 hirerCompanyRouter.get('/', getCompany);
 hirerCompanyRouter.patch('/', validateBody(companySchema.partial()), updateCompany);
+
+export const hirerAccountRouter = Router();
+hirerAccountRouter.use(authenticate, authorize('hirer'));
+hirerAccountRouter.get('/', getHirerAccount);
+hirerAccountRouter.patch('/', validateBody(hirerAccountSchema), updateHirerAccount);
