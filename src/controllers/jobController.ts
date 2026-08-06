@@ -1,8 +1,9 @@
-import { Response, NextFunction } from 'express';
+import type { Response, NextFunction } from 'express';
+
 import { Job } from '../models/Job.ts';
 import { Company } from '../models/Company.ts';
 import { Application } from '../models/Application.ts';
-import { AuthRequest } from '../middleware/auth.ts';
+import type { AuthRequest } from '../middleware/auth.ts';
 import {
   assertCanFeature,
   assertCanOpenJob,

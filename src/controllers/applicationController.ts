@@ -1,7 +1,8 @@
-import { Response, NextFunction } from 'express';
+import type { Response, NextFunction } from 'express';
+
 import { Application } from '../models/Application.ts';
 import { Job } from '../models/Job.ts';
-import { AuthRequest } from '../middleware/auth.ts';
+import type { AuthRequest } from '../middleware/auth.ts';
 import { uploadBuffer } from '../services/cloudinary.ts';
 
 export async function applyToJob(req: AuthRequest, res: Response, next: NextFunction) {

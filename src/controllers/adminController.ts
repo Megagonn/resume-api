@@ -1,11 +1,12 @@
-import { Response, NextFunction } from 'express';
+import type { Response, NextFunction } from 'express';
+
 import { User } from '../models/User.ts';
 import { Job } from '../models/Job.ts';
 import { Application } from '../models/Application.ts';
 import { Order } from '../models/Order.ts';
 import { Package } from '../models/Package.ts';
 import { Company } from '../models/Company.ts';
-import { AuthRequest } from '../middleware/auth.ts';
+import type { AuthRequest } from '../middleware/auth.ts';
 import { publicUser } from '../utils/auth.ts';
 
 export async function getStats(_req: AuthRequest, res: Response, next: NextFunction) {

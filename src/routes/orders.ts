@@ -1,4 +1,5 @@
-import { Router } from 'express';
+import express from 'express';
+
 import {
   listPackages,
   createOrder,
@@ -11,10 +12,10 @@ import { validateBody } from '../middleware/validate.ts';
 import { orderSchema, orderStatusSchema } from '../utils/schemas.ts';
 import { uploadDocument } from '../middleware/upload.ts';
 
-export const packageRouter = Router();
+export const packageRouter = express.Router();
 packageRouter.get('/', listPackages);
 
-export const orderRouter = Router();
+export const orderRouter = express.Router();
 orderRouter.post(
   '/',
   authenticate,
@@ -23,11 +24,11 @@ orderRouter.post(
   createOrder
 );
 
-export const seekerOrderRouter = Router();
+export const seekerOrderRouter = express.Router();
 seekerOrderRouter.use(authenticate, authorize('seeker'));
 seekerOrderRouter.get('/', listSeekerOrders);
 
 /** Mounted under /api/admin/orders — parent already authenticates admin */
-export const adminOrderRouter = Router();
+export const adminOrderRouter = express.Router();
 adminOrderRouter.patch('/:id', validateBody(orderStatusSchema), updateOrderStatus);
 adminOrderRouter.post('/:id/deliver', uploadDocument, deliverOrder);

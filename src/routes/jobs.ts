@@ -1,4 +1,5 @@
-import { Router } from 'express';
+import express from 'express';
+
 import {
   listJobs,
   getJob,
@@ -14,7 +15,7 @@ import { validateBody } from '../middleware/validate.ts';
 import { jobSchema, applicationSchema } from '../utils/schemas.ts';
 import { uploadDocument } from '../middleware/upload.ts';
 
-const router = Router();
+const router = express.Router();
 
 router.get('/', listJobs);
 router.get('/:id', getJob);
@@ -27,7 +28,7 @@ router.post(
   applyToJob
 );
 
-export const hirerJobRouter = Router();
+export const hirerJobRouter = express.Router();
 hirerJobRouter.use(authenticate, authorize('hirer'));
 hirerJobRouter.get('/', listHirerJobs);
 hirerJobRouter.post('/', validateBody(jobSchema), createJob);

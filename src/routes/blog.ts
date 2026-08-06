@@ -1,4 +1,5 @@
-import { Router } from 'express';
+import express from 'express';
+
 import {
   listPublishedPosts,
   getPublishedPost,
@@ -10,11 +11,11 @@ import {
 import { validateBody } from '../middleware/validate.ts';
 import { blogPostSchema } from '../utils/schemas.ts';
 
-const publicBlogRouter = Router();
+const publicBlogRouter = express.Router();
 publicBlogRouter.get('/', listPublishedPosts);
 publicBlogRouter.get('/:slug', getPublishedPost);
 
-export const adminBlogRouter = Router();
+export const adminBlogRouter = express.Router();
 adminBlogRouter.get('/', listAdminPosts);
 adminBlogRouter.post('/', validateBody(blogPostSchema), createPost);
 adminBlogRouter.patch('/:id', validateBody(blogPostSchema.partial()), updatePost);

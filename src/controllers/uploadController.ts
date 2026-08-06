@@ -1,5 +1,6 @@
-import { Response, NextFunction } from 'express';
-import { AuthRequest } from '../middleware/auth.ts';
+import type { Response, NextFunction } from 'express';
+
+import type { AuthRequest } from '../middleware/auth.ts';
 import { uploadBuffer } from '../services/cloudinary.ts';
 import { User } from '../models/User.ts';
 import { Company } from '../models/Company.ts';

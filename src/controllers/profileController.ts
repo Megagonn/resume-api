@@ -1,7 +1,8 @@
-import { Response, NextFunction } from 'express';
+import type { Response, NextFunction } from 'express';
+
 import { User } from '../models/User.ts';
 import { Company } from '../models/Company.ts';
-import { AuthRequest } from '../middleware/auth.ts';
+import type { AuthRequest } from '../middleware/auth.ts';
 import { publicUser } from '../utils/auth.ts';
 
 export async function getSeekerProfile(req: AuthRequest, res: Response, next: NextFunction) {

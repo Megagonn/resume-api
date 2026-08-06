@@ -1,8 +1,9 @@
-import { Response, NextFunction } from 'express';
+import type { Response, NextFunction } from 'express';
+
 import bcrypt from 'bcryptjs';
 import { User } from '../models/User.ts';
 import { Company } from '../models/Company.ts';
-import { AuthRequest } from '../middleware/auth.ts';
+import type { AuthRequest } from '../middleware/auth.ts';
 import { publicUser, signToken } from '../utils/auth.ts';
 
 export async function signup(req: AuthRequest, res: Response, next: NextFunction) {

@@ -1,4 +1,5 @@
-import { Router } from 'express';
+import express from 'express';
+
 import {
   listHirerPlans,
   getSubscription,
@@ -6,10 +7,10 @@ import {
 } from '../controllers/subscriptionController.ts';
 import { authenticate, authorize } from '../middleware/auth.ts';
 
-export const hirerPlanPublicRouter = Router();
+export const hirerPlanPublicRouter = express.Router();
 hirerPlanPublicRouter.get('/', listHirerPlans);
 
-export const hirerSubscriptionRouter = Router();
+export const hirerSubscriptionRouter = express.Router();
 hirerSubscriptionRouter.use(authenticate, authorize('hirer'));
 hirerSubscriptionRouter.get('/', getSubscription);
 hirerSubscriptionRouter.post('/upgrade', upgradeSubscription);

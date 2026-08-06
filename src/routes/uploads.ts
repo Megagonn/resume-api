@@ -1,4 +1,5 @@
-import { Router } from 'express';
+import express from 'express';
+
 import {
   uploadImageFile,
   uploadDocumentFile,
@@ -9,7 +10,7 @@ import {
 import { authenticate, authorize } from '../middleware/auth.ts';
 import { uploadImage, uploadDocument } from '../middleware/upload.ts';
 
-const uploadRouter = Router();
+const uploadRouter = express.Router();
 uploadRouter.use(authenticate);
 
 uploadRouter.post('/image', authorize('seeker', 'hirer', 'admin'), uploadImage, uploadImageFile);

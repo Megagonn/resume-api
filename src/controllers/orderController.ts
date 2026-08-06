@@ -1,7 +1,8 @@
-import { Response, NextFunction } from 'express';
+import type { Response, NextFunction } from 'express';
+
 import { Package } from '../models/Package.ts';
 import { Order } from '../models/Order.ts';
-import { AuthRequest } from '../middleware/auth.ts';
+import type { AuthRequest } from '../middleware/auth.ts';
 import { uploadBuffer } from '../services/cloudinary.ts';
 
 export async function listPackages(req: AuthRequest, res: Response, next: NextFunction) {

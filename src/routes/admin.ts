@@ -1,4 +1,5 @@
-import { Router } from 'express';
+import express from 'express';
+
 import {
   getStats,
   listUsers,
@@ -28,7 +29,7 @@ import {
 import { adminOrderRouter } from './orders.ts';
 import { adminBlogRouter } from './blog.ts';
 
-const router = Router();
+const router = express.Router();
 
 router.use(authenticate, authorize('admin'));
 
