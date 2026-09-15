@@ -28,6 +28,7 @@ import {
 } from '../utils/schemas.ts';
 import { adminOrderRouter } from './orders.ts';
 import { adminBlogRouter } from './blog.ts';
+import { adminServicesRouter } from './services.ts';
 
 const router = express.Router();
 
@@ -41,6 +42,7 @@ router.get('/applications', listAllApplications);
 router.get('/orders', listAllOrders);
 router.use('/orders', adminOrderRouter);
 router.use('/blog', adminBlogRouter);
+router.use('/services', adminServicesRouter);
 
 router.get('/packages', listAdminPackages);
 router.post('/packages', validateBody(packageSchema), createPackage);

@@ -4,6 +4,9 @@ import { Package } from '../models/Package.ts';
 import { HirerPlan } from '../models/HirerPlan.ts';
 import { Company } from '../models/Company.ts';
 import { BlogPost } from '../models/BlogPost.ts';
+import { ServicePage } from '../models/ServicePage.ts';
+import { defaultServicePages } from './servicePages.ts';
+import { seedDemoData } from './demoData.ts';
 import { env } from '../config/env.ts';
 
 const defaultPackages = [
@@ -72,7 +75,7 @@ const defaultHirerPlans = [
     name: 'Free',
     price: 0,
     currency: 'NGN',
-    description: 'Post one open role and preview applicants.',
+    description: 'Post one opening and preview applicants.',
     features: [
       '1 concurrent open job',
       'Applicant preview (first 5)',
@@ -89,7 +92,8 @@ const defaultHirerPlans = [
     name: 'Premium',
     price: 25000,
     currency: 'NGN',
-    description: 'Unlimited openings, featured listings, full applicant access.',
+    description:
+      'Reach more candidates with unlimited job postings, featured listings and full applicant access.',
     features: [
       'Unlimited open jobs',
       'Featured job listings',
@@ -202,5 +206,17 @@ export async function seed(): Promise<void> {
       ]);
       console.log('Blog posts seeded');
     }
+  }
+
+  for (const page of defaultServicePages) {
+    const exists = await ServicePage.findOne({ slug: page.slug });
+    if (!exists) {
+      await ServicePage.create(page);
+    }
+  }
+  console.log('Service pages seeded');
+
+  if (adminUser) {
+    await seedDemoData(adminUser._id);
   }
 }

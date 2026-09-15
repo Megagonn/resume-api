@@ -24,6 +24,7 @@ import {
   hirerSubscriptionRouter,
 } from './routes/subscriptions.ts';
 import publicBlogRouter from './routes/blog.ts';
+import publicServicesRouter from './routes/services.ts';
 
 async function main() {
   await connectDb();
@@ -51,6 +52,7 @@ async function main() {
   app.use('/api/packages', packageRouter);
   app.use('/api/orders', orderRouter);
   app.use('/api/blog', publicBlogRouter);
+  app.use('/api/services', publicServicesRouter);
   app.use('/api/uploads', uploadRoutes);
   app.use('/api/admin', adminRoutes);
 

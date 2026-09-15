@@ -138,3 +138,53 @@ export const blogPostSchema = z.object({
   coverImage: z.string().optional(),
   published: z.boolean().optional(),
 });
+
+const serviceBenefitSchema = z.object({
+  title: z.string().min(2),
+  description: z.string().min(10),
+});
+
+const serviceProcessStepSchema = z.object({
+  title: z.string().min(2),
+  description: z.string().min(10),
+});
+
+const serviceFaqSchema = z.object({
+  question: z.string().min(5),
+  answer: z.string().min(10),
+  sortOrder: z.number().optional(),
+});
+
+const serviceTestimonialSchema = z.object({
+  name: z.string().min(2),
+  role: z.string().min(2),
+  company: z.string().optional(),
+  quote: z.string().min(10),
+  rating: z.number().min(1).max(5).optional(),
+});
+
+const serviceExampleSchema = z.object({
+  title: z.string().min(2),
+  description: z.string().min(10),
+  highlight: z.string().optional(),
+});
+
+export const servicePageSchema = z.object({
+  slug: z.string().min(2),
+  published: z.boolean().optional(),
+  sortOrder: z.number().optional(),
+  metaTitle: z.string().min(5),
+  metaDescription: z.string().min(20),
+  keywords: z.array(z.string()).optional(),
+  eyebrow: z.string().min(2),
+  headline: z.string().min(5),
+  subheadline: z.string().min(10),
+  benefits: z.array(serviceBenefitSchema).min(1),
+  processSteps: z.array(serviceProcessStepSchema).optional(),
+  faqs: z.array(serviceFaqSchema).optional(),
+  testimonials: z.array(serviceTestimonialSchema).optional(),
+  examples: z.array(serviceExampleSchema).optional(),
+  recommendedPackageSlug: z.string().min(2),
+  primaryCtaLabel: z.string().min(2),
+  primaryCtaHref: z.string().min(1),
+});

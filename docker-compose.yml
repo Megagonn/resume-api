@@ -1,0 +1,11 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: ready-brand-mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - ready_brand_mongo:/data/db
+
+volumes:
+  ready_brand_mongo:
